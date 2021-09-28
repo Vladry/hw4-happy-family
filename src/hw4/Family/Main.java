@@ -16,8 +16,8 @@ public class Main {
 
         Pet catVasya = new Pet("cat", "Vasya", 4, 90);
         Human mom3 = new Human("Vera", "Klyuevf", 2000);
-        Human dad3 = new Human("Vovan", "Klyuev", 2010);
-        Human aKid3 = new Human("Maloye", "Klyuev", 2018);
+        Human dad3 = new Human("Vovan", "Klyuev", 2000);
+        Human aKid3 = new Human("Kid1_inFam3", "Klyuev", 2015);
 
         Family fam1 = new Family(mom1, dad1);
         fam1.setPet(dogJoe);
@@ -54,14 +54,33 @@ public class Main {
 
         dad2.greetPet(parrotKiril);
         mom3.describePet(mom3.getFamily().getPet());
-        fam3.setChildren(new Human("newBaby", fam3.getFather().getSurname(), 2021));
+
+        //проверка методов deleteChild(), setChildren(), countFamily()
+        System.out.println("//проверка методов deleteChild(), setChildren(), countFamily()");
+        fam3.setChildren(new Human("Kid2_inFam3", fam3.getFather().getSurname(), 2018));
+        fam3.setChildren(new Human("Kid3_inFam3", fam3.getFather().getSurname(), 2019));
+        fam3.setChildren(new Human("Kid4_inFam3", fam3.getFather().getSurname(), 2020));
+        fam3.setChildren(new Human("Kid5_inFam3", fam3.getFather().getSurname(), 2021));
+        System.out.println(fam3.toString());
+        System.out.println("fam3 countFamily()= " + fam3.countFamily());
+
+
+        //проверка метода deleteChild()
+        System.out.println("//проверка метода deleteChild()");
+        fam3.deleteChild(0);
+        System.out.println(fam3.toString());
+        System.out.println("fam3 countFamily()= " + fam3.countFamily());
+        fam3.deleteChild(1);
+        System.out.println(fam3.toString());
+        System.out.println("fam3 countFamily()= " + fam3.countFamily());
+        fam3.deleteChild(2);
+        System.out.println(fam3.toString());
+        System.out.println("fam3 countFamily()= " + fam3.countFamily());
+        fam3.deleteChild(3);
         System.out.println(fam3.toString());
         System.out.println("fam3 countFamily()= " + fam3.countFamily());
     }
 }
 
-/*В классе Main создайте несколько семей, чтобы у каждого из классов были использованы все возможные конструкторы. Выведите информацию о каждом человеке на экран.
-В классе Main создайте маму, папу, ребенка и его домашнее животное. Присвойте все необходимые ссылки (у ребенка на родителей и питомца), чтобы получилась полноценная семья. Вызовите все доступные методы у ребенка (включая метод toString()) и у его питомца.
 
-Методы должны не просто добавлять/удалять элементы в массив Human но и производить необходимые модификации (добавленному/удаленном элементу установить/удалить ссылку на текущую семью). При удалении элемента, в массиве не должно оставаться пустых мест - необходимо создать новый массив.
-*/
+

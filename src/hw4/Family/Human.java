@@ -10,6 +10,9 @@ public class Human {
     private int iq; //from 0 to 100;
     private String[][] schedule;
     private Family family;
+   static {
+        System.out.println("загружается новый класс Human");
+    }
 
     {
         schedule = new String[7][2];
@@ -20,6 +23,7 @@ public class Human {
         schedule[4][0] = "thursday";
         schedule[5][0] = "friday";
         schedule[6][0] = "saturday";
+        System.out.println("создается новый объект Human");
     }
 
     Human() {
@@ -43,6 +47,7 @@ public class Human {
     public void greetPet(Pet pet) {
         System.out.println("Привет, " + pet.getNickname());
     }
+
     public void describePet(Pet pet) {
         String trickVerdict;
         if (pet.getTrickLevel() > 50) {
@@ -61,42 +66,77 @@ public class Human {
 
     }
 
-    public String getName(){
+    public String getName() {
         return this.name;
-    };
-    public void setName(String name){
+    }
+
+    ;
+
+    public void setName(String name) {
         this.name = name;
-    };
-    public String getSurname(){
+    }
+
+    ;
+
+    public String getSurname() {
         return this.surname;
-    };
-    public void setSurname(String surname){
+    }
+
+    ;
+
+    public void setSurname(String surname) {
         this.surname = surname;
-    };
-    public int getYear(){
+    }
+
+    ;
+
+    public int getYear() {
         return this.year;
-    };
-    public void setYear(int year){
+    }
+
+    ;
+
+    public void setYear(int year) {
         this.year = year;
-    };
-    public int getIq(){
+    }
+
+    ;
+
+    public int getIq() {
         return this.iq;
-    };
-    public void setIq(int iq){
+    }
+
+    ;
+
+    public void setIq(int iq) {
         this.iq = iq;
-    };
-    public String[][] getSchedule(){
+    }
+
+    ;
+
+    public String[][] getSchedule() {
         return this.schedule;
-    };
-    public void setSchedule(String[][] schedule){
+    }
+
+    ;
+
+    public void setSchedule(String[][] schedule) {
         this.schedule = schedule;
-    };
-    public Family getFamily(){
+    }
+
+    ;
+
+    public Family getFamily() {
         return this.family;
-    };
-    public void setFamily(Family family){
+    }
+
+    ;
+
+    public void setFamily(Family family) {
         this.family = family;
-    };
+    }
+
+    ;
 
     @Override
     public String toString() {

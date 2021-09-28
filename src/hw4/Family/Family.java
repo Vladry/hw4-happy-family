@@ -9,8 +9,13 @@ public class Family {
     private Human[] children;
     private Pet pet;
 
+    static {
+        System.out.println("загружается новый класс Family");
+    }
+
     {
-        this.children = new Human[20];
+        this.children = new Human[1];
+        System.out.println("создается новый объект Family");
     }
 
     Family(Human mother, Human father) {
@@ -19,25 +24,43 @@ public class Family {
     }
 
     public void addChild(Human child) {
-        String errMsg = "This family must be F@ing crazy to have more that 20 children! \n" +
-                "Out of free space for another baby in the array";
-        int freeCell = findNextFreeCell();
-        if (freeCell >= children.length - 1) {
-            Exception ErrOverflow = new Exception(errMsg);
-            System.out.println(ErrOverflow.toString());
+        if (children[0] != null) {
+            Human[] childrenNew = new Human[children.length + 1];
+            System.arraycopy(children, 0, childrenNew, 0, children.length);
+            childrenNew[children.length] = child;
+            children = childrenNew;
         } else {
-            children[freeCell] = child;
+            children[0] = child;
         }
     }
 
     public boolean deleteChild(int index) {
-        if (children[index] == null) {
+        if ((index >= children.length || children[index] == null) || index > children.length - 1) {
             return false;
         } else {
-            children[index] = null;
+//            Index 3 out of bounds for length 2
+
+            int newArrLength = (children.length > 1)? children.length - 1 : 1;
+            Human[] childrenNew = new Human[newArrLength];
+            if (newArrLength > index) {
+                System.arraycopy(children, 0, childrenNew, 0, index);
+            }
+                System.arraycopy(children, index + 1, childrenNew, index, children.length - 1 - index);
+
+            children = childrenNew;
+
             return true;
         }
     }
+
+//    public boolean deleteChild(int index) {
+//        if (children[index] == null) {
+//            return false;
+//        } else {
+//            children[index] = null;
+//            return true;
+//        }
+//    }
 
     private int findNextFreeCell() {
         for (int i = children.length - 1; i >= 0; i--) {
@@ -86,7 +109,7 @@ public class Family {
 
     @Override
     public String toString() {
-        return  "Family{\n mother= " + mother +
+        return "Family{\n mother= " + mother +
                 "father= " + father +
                 "children= " + Arrays.toString(children) + "\n" +
                 "pet= " + pet +
@@ -94,5 +117,4 @@ public class Family {
     }
 }
 
-/* получить количество человек в семье countFamily (родители в семье никогда не изменяются; если происходит изменение родительского состава - это уже другая семья)
-Решите какие поля стоит использовать для сравнения в методе equals() (к примеру, привычки животного могут меняться).*/
+/* Решите какие поля стоит использовать для сравнения в методе equals() (к примеру, привычки животного могут меняться).*/
