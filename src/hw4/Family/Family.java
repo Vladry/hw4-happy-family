@@ -35,32 +35,17 @@ public class Family {
     }
 
     public boolean deleteChild(int index) {
-        if ((index >= children.length || children[index] == null) || index > children.length - 1) {
+        if (index >= children.length || children[index] == null) {
             return false;
         } else {
-//            Index 3 out of bounds for length 2
-
-            int newArrLength = (children.length > 1)? children.length - 1 : 1;
-            Human[] childrenNew = new Human[newArrLength];
-            if (newArrLength > index) {
-                System.arraycopy(children, 0, childrenNew, 0, index);
-            }
-                System.arraycopy(children, index + 1, childrenNew, index, children.length - 1 - index);
-
-            children = childrenNew;
-
+            System.arraycopy(children, index + 1, children, index, children.length - 1 - index);
+            Human[] newChildren = new Human[children.length - 1];
+            System.arraycopy(children, 0, newChildren, 0, children.length - 1);
+            children = newChildren;
             return true;
         }
     }
 
-//    public boolean deleteChild(int index) {
-//        if (children[index] == null) {
-//            return false;
-//        } else {
-//            children[index] = null;
-//            return true;
-//        }
-//    }
 
     private int findNextFreeCell() {
         for (int i = children.length - 1; i >= 0; i--) {
